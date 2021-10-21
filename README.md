@@ -5,23 +5,31 @@ The repository includes the development version of shiny application ProteinMicr
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
+## Testing version of the app (shinyapps.io)
+
+Our app can also be tested on shinyapps.io. 
+
+https://lfapp.shinyapps.io/protein_array/
+
+
 ## Installation
 
-ProteinArrayApp is dependent on following packages:
-```
-shiny
-shinyjs
-shinythemes
-fs
-DT
-tidyr
-plotly
-colourpicker
-```
+ProteinArrayApp is dependent on following packages
+
+- shiny
+- shinyjs
+- shinythemes
+- fs
+- DT
+- tidyr
+- plotly
+- colourpicker
+- EBImage
+
 They can be installed via
 ```
 install.packages(c("shiny","shinyjs","shinythemes","fs","DT","tidyr","plotly","colourpicker"))
-``
+```
 
 Additionaly, the application requires EBImage package which can not be found on CRAN and should be installed from Bioconductor via
 ```{r, eval = FALSE}
@@ -42,3 +50,11 @@ runApp("R/proteinarray_app.R")
 ## Description
 Image analysis (cropping, segmetation, thresholding, feature engineering, plotting, timeseries) 
 of images taken from protein microarrays.
+
+## Preview
+
+![tab1](preview/preview_1.png)
+![tab2](preview/preview_2.png)
+![tab3](preview/preview_3.png)
+![tab4](preview/preview_4.png)
+![tab5](preview/preview_5.png)
