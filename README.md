@@ -7,7 +7,7 @@ The repository includes the development version of shiny application ProteinMicr
 
 ## Testing version of the app (shinyapps.io)
 
-Our app can also be tested on shinyapps.io. 
+Our app can be tested on shinyapps.io. 
 
 https://lfapp.shinyapps.io/protein_array/
 
