@@ -594,6 +594,7 @@ server <- function(input, output, session) {
         labels <- labels[-row,]
       }
     }
+    print(labels)
     names <- unique(labels[,2])
     
     analytes$name <- names
@@ -891,14 +892,24 @@ server <- function(input, output, session) {
             row_cutpoints <- seq(1, dim(img)[1], length.out=roi$cols + 1)
             w <- row_cutpoints[2] - row_cutpoints[1]
             h <- dim(img)[2] - LinFunc1(row_cutpoints[2])
-            
-            # Extracting spots from the row
-            for(i in 1:(length(row_cutpoints)-1)){
-              sub_img <- img[row_cutpoints[i]:(row_cutpoints[i]+w),,]
-              # Reducing the NAs by cutting top and bottom empty parts
-              y_cut <- LinFunc1(row_cutpoints[i+1])
-              sub_img <- sub_img[,y_cut:(y_cut+h),]
-              tmp.row[[i]] <- sub_img
+            if (length(dim(img)) == 3) {
+              # Extracting spots from the row
+              for(i in 1:(length(row_cutpoints)-1)){
+                sub_img <- img[row_cutpoints[i]:(row_cutpoints[i]+w),,]
+                # Reducing the NAs by cutting top and bottom empty parts
+                y_cut <- LinFunc1(row_cutpoints[i+1])
+                sub_img <- sub_img[,y_cut:(y_cut+h),]
+                tmp.row[[i]] <- sub_img
+              }
+            } else if (length(dim(img)) == 2) {
+              # Extracting spots from the row
+              for(i in 1:(length(row_cutpoints)-1)){
+                sub_img <- img[row_cutpoints[i]:(row_cutpoints[i]+w),]
+                # Reducing the NAs by cutting top and bottom empty parts
+                y_cut <- LinFunc1(row_cutpoints[i+1])
+                sub_img <- sub_img[,y_cut:(y_cut+h)]
+                tmp.row[[i]] <- sub_img
+              }
             }
             # Add the row to segmentation list
             segmentation.list[[y]] <- tmp.row
