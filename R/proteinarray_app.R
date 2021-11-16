@@ -594,7 +594,6 @@ server <- function(input, output, session) {
         labels <- labels[-row,]
       }
     }
-    print(labels)
     names <- unique(labels[,2])
     
     analytes$name <- names
@@ -610,7 +609,7 @@ server <- function(input, output, session) {
       cell <- c(match(cell[1], LETTERS), as.numeric(cell[2]))
       idx <- match(labels[row,2],names)
       
-      new_matrix[cell[1],cell[2]] <- idx
+      new_matrix[cell[2],cell[1]] <- idx
     }
     roi$grid <- data.frame(new_matrix)
   })
