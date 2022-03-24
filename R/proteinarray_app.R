@@ -332,6 +332,8 @@ server <- function(input, output, session) {
   intensData <- reactiveValues(dates=NULL, dataFrame=NULL)
   
   multiImages <- reactiveValues(idx = NULL)
+  
+  LETTERS <- readRDS("letters.rds")
 
   # Load panel ------------------------------------------------------------
   observe({
@@ -587,8 +589,9 @@ server <- function(input, output, session) {
     # Remove wrong or extra labels
     for (row in 1:nrow(labels)){
       cell <- list()
-      cell[1] <- substring(labels[row,1],1,1)
-      cell[2] <- substring(labels[row,1],2)
+      splitted_str <- strsplit(labels[row,1],split="(?<=[a-zA-Z])\\s*(?=[0-9])",perl=TRUE)
+      cell[1] <- splitted_str[[1]][1]
+      cell[2] <- splitted_str[[1]][2]
       cell <- c(match(cell[1], LETTERS), as.numeric(cell[2]))
       idx <- match(labels[row,2],names)
       
